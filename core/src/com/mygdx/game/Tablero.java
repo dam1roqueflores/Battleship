@@ -14,6 +14,10 @@ public class Tablero {
     //CONSTANTES
     private final short LADO=32;
     private final String IMAGENAGUA="agua.png";
+    private final String IMAGENAGUA1="agua1.png";
+    private final String IMAGENAGUA2="agua2.png";
+
+    private final short TASACAMBIO=5;
 
 
     //RESTO DE ESTADOS
@@ -22,8 +26,11 @@ public class Tablero {
     private int posX;
     private int posY;
 
-
     private ArrayList<Celda> listaCeldas;
+    private ArrayList<String> listaStrImg; //lista de string para animaciones de la celda
+
+    short contador=0;
+    short contadorCambio=0;
     /////////////////////////////////////////////////////////////////////////////////////
     //
     //      CONSTRUCTOR
@@ -39,6 +46,12 @@ public class Tablero {
         filas= miFilas;
         columnas=miColumnas;
         listaCeldas = new ArrayList();
+        listaStrImg=new ArrayList<>();
+
+        // carga la lista de imágenes para animar las celdas
+        listaStrImg.add(IMAGENAGUA);
+        listaStrImg.add(IMAGENAGUA1);
+        listaStrImg.add(IMAGENAGUA2);
 
 
         for (i=0;i<filas;i++){
@@ -57,9 +70,17 @@ public class Tablero {
     public void pintarse(SpriteBatch miSB){
 
         for (Celda miCelda:listaCeldas){
-            miCelda.pintarse(miCelda.getPosX(),miCelda.getPosY(),miSB);
+            miCelda.pintarse(miCelda.getPosX(),miCelda.getPosY(),miSB,listaStrImg.get(contador));
         }
-
+        if (contadorCambio>TASACAMBIO) {
+            contadorCambio=0;
+            contador++;
+            if (contador == 3) {
+                contador = 0;
+            }
+        } else {
+            contadorCambio++;
+        }
     }
     // comprobamos si se ha pulsado sobre una celda del tablero
     public boolean comprobar(int miX, int miY){
