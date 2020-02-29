@@ -17,7 +17,7 @@ public class Tablero {
     private final String IMAGENAGUA1="agua1.png";
     private final String IMAGENAGUA2="agua2.png";
 
-    private final short TASACAMBIO=5;
+    private final short TASACAMBIO=3;
 
 
     //RESTO DE ESTADOS
