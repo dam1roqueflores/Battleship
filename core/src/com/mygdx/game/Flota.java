@@ -28,7 +28,7 @@ public class Flota {
     /////////////////////////////////////////////////////////////////////////////////////
     // resto de comportamientos
     // creamos la flota
-    public void crear(SpriteBatch miSB){
+    public void generarFlota(boolean TFlota){
 
     }
     // liberamos recursos

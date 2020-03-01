@@ -109,7 +109,9 @@ public class Controlador {
         recienTocado = Gdx.input.justTouched();
         if (recienTocado) {
            // comienza el juego, pintamos los tableros y generamos la flota
-            dibujarPantallaInicial();
+            estadoJuego=1;
+            flotaAmiga.generarFlota(TIPOFLOTA);
+            flotaEnemiga.generarFlota(!TIPOFLOTA);
         }
     }
 
@@ -132,7 +134,7 @@ public class Controlador {
     private void dibujarPantallaInicial() {
         tableroEnemigo.pintarse(batch);
         tableroAmigo.pintarse(batch);
-        flotaEnemiga.crear(batch);
-        flotaAmiga.crear(batch);
+        //flotaEnemiga.generarFlota(batch);
+        //flotaAmiga.generarFlota(batch);
     }
 }

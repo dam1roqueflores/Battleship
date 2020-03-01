@@ -12,7 +12,7 @@ public class Celda {
 //
 /////////////////////////////////////////////////////////////////////////////////////
     //CONSTANTES
-
+    short LADO=32;
     // Resto de estados
     private int posX;
     private int posY;
@@ -27,12 +27,11 @@ public class Celda {
     //      CONSTRUCTOR
     //
     /////////////////////////////////////////////////////////////////////////////////////
-    public Celda(int miX, int miY, short miLado, String strImg) {
+    public Celda(int miX, int miY, String strImg) {
         int i;
 
         posX=miX;
         posY=miY;
-        lado=miLado;
 
         imgCelda = new Texture(strImg);
 
@@ -49,14 +48,14 @@ public class Celda {
 
         imgCelda=new Texture(miString);
         miSB.begin();
-        miSB.draw(imgCelda, posX, posY,lado,lado);
+        miSB.draw(imgCelda, posX, posY,LADO,LADO);
         miSB.end();
 
     }
     // comprobamos si se ha pulsado sobre una celda
     public boolean comprobar(int miX, int miY){
         boolean resultado=false;
-        resultado=(posX+lado<miX && posX>miX) && (posY+lado<miY && posY > miY);
+        resultado=(posX+LADO<miX && posX>miX) && (posY+LADO<miY && posY > miY);
         return resultado;
     }
 
