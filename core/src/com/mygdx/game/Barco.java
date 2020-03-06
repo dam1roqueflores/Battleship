@@ -16,12 +16,16 @@ public class Barco {
     //CONSTANTES
 
     //Resto de estados
-    int posX;
-    int posY;
-    int numCeldas; // número de celdas del barco de 1 celda a 4 celdas.
+    private int fila;
+    private int columna;
+    private int tamano; // número de celdas del barco de 3 celda a 6 celdas.
+    private boolean direccion;
     String rutaImagen;
 
     ArrayList <Celda> listaCeldasBarco;
+
+
+
     /////////////////////////////////////////////////////////////////////////////////////
     //
     //COMPORTAMIENTOS
@@ -29,18 +33,18 @@ public class Barco {
     /////////////////////////////////////////////////////////////////////////////////////
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
-    public Barco(int miX, int miY, short miCeldas, String miStrimg) {
+    public Barco(int miFila, int miColumna, int miTamaño, boolean direccion, String miStrimg) {
         int i;
         Celda miCelda;
 
-        posX=miX;
-        posY=miY;
-        numCeldas=miCeldas;
+        fila=miFila;
+        columna=miColumna;
+        tamano=miTamaño;
         rutaImagen=miStrimg;
 
         // creamos la lista de celdas que será nuestro barco
-        for (i=0;i<numCeldas;i++){
-            miCelda = new Celda(posX,posY,rutaImagen);
+        for (i=0;i<tamano;i++){
+            miCelda = new Celda(fila,columna,rutaImagen);
             listaCeldasBarco.add(miCelda);
         }
     }
@@ -51,5 +55,19 @@ public class Barco {
             miCelda.pintarse(miCelda.getPosX(), miCelda.getPosY(),miSB,miString);
         }
     }
+    public int getFila() {
+        return fila;
+    }
 
+    public int getColumna() {
+        return columna;
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+
+    public boolean Direccion() {
+        return direccion;
+    }
 }

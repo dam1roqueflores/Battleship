@@ -110,8 +110,8 @@ public class Controlador {
         if (recienTocado) {
            // comienza el juego, pintamos los tableros y generamos la flota
             estadoJuego=1;
-            flotaAmiga.generarFlota(TIPOFLOTA);
-            flotaEnemiga.generarFlota(!TIPOFLOTA);
+            flotaAmiga= new Flota(TIPOFLOTA);
+            flotaEnemiga= new Flota(!TIPOFLOTA);
         }
     }
 
@@ -136,5 +136,13 @@ public class Controlador {
         tableroAmigo.pintarse(batch);
         //flotaEnemiga.generarFlota(batch);
         //flotaAmiga.generarFlota(batch);
+    }
+
+    public short getFILAS() {
+        return FILAS;
+    }
+
+    public short getCOLUMNAS() {
+        return COLUMNAS;
     }
 }

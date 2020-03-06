@@ -39,6 +39,7 @@ public class Tablero {
     public Tablero(int miPosX, int miPosY, short miFilas, short miColumnas) {
         int i=0;
         int j=0;
+        int k=0;
         Celda miCelda;
 
         posX=miPosX;
@@ -56,7 +57,8 @@ public class Tablero {
 
         for (i=0;i<filas;i++){
             for (j=0;j<columnas;j++){
-                miCelda= new Celda(posX+(LADO*i),posY+(LADO*j),LADO,IMAGENAGUA);
+                k=j%3;
+                miCelda= new Celda(posX+(LADO*i),posY+(LADO*j),listaStrImg.get(k));
                 listaCeldas.add(miCelda);
             }
         }
