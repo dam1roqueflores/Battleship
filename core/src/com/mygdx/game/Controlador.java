@@ -110,8 +110,8 @@ public class Controlador {
         if (recienTocado) {
            // comienza el juego, pintamos los tableros y generamos la flota
             estadoJuego=1;
-            flotaAmiga= new Flota(TIPOFLOTA);
-            flotaEnemiga= new Flota(!TIPOFLOTA);
+            flotaAmiga= new Flota(tableroAmigo, TIPOFLOTA,FILAS,COLUMNAS);
+            flotaEnemiga= new Flota(tableroEnemigo,!TIPOFLOTA,FILAS,COLUMNAS);
         }
     }
 
@@ -125,8 +125,8 @@ public class Controlador {
 
         tableroAmigo = new Tablero(posxTableroA,posyTableroA,FILAS,COLUMNAS );
         tableroEnemigo = new Tablero(posXTableroE,posYTableroE,FILAS,COLUMNAS);
-        flotaAmiga = new Flota(TIPOFLOTA);
-        flotaEnemiga = new Flota(!TIPOFLOTA);
+        flotaAmiga = new Flota(tableroAmigo,TIPOFLOTA,FILAS,COLUMNAS);
+        flotaEnemiga = new Flota(tableroEnemigo,!TIPOFLOTA,FILAS,COLUMNAS);
         batch=new SpriteBatch();
     }
 

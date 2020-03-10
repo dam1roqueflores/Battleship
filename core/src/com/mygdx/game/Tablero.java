@@ -36,14 +36,13 @@ public class Tablero {
     //      CONSTRUCTOR
     //
     /////////////////////////////////////////////////////////////////////////////////////
-    public Tablero(int miPosX, int miPosY, short miFilas, short miColumnas) {
+    public Tablero(short miFilas, short miColumnas) {
         int i=0;
         int j=0;
-        int k=0;
+        short contadorImg=0;
+
         Celda miCelda;
 
-        posX=miPosX;
-        posY=miPosY;
         filas= miFilas;
         columnas=miColumnas;
         listaCeldas = new ArrayList();
@@ -57,9 +56,10 @@ public class Tablero {
 
         for (i=0;i<filas;i++){
             for (j=0;j<columnas;j++){
-                k=j%3;
-                miCelda= new Celda(posX+(LADO*i),posY+(LADO*j),listaStrImg.get(k));
+                miCelda= new Celda(this,miFilas,miColumnas,listaStrImg.get(contadorImg));
                 listaCeldas.add(miCelda);
+                contadorImg++;
+                if (contadorImg>3) {contadorImg=0;}
             }
         }
     }
@@ -101,5 +101,16 @@ public class Tablero {
     // liberamos tablero de memoria
     public void dispose(){
         this.dispose();
+    }
+
+    /////////////////////////////////////////////////
+    // Getters
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
     }
 }

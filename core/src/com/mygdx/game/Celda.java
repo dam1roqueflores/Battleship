@@ -14,9 +14,11 @@ public class Celda {
     //CONSTANTES
     short LADO=32;
     // Resto de estados
+    private int fila;
+    private int columna;
     private int posX;
     private int posY;
-    private short lado;
+
 
     private Texture imgCelda;
     private ArrayList <Texture> listaImgCelda;
@@ -27,11 +29,14 @@ public class Celda {
     //      CONSTRUCTOR
     //
     /////////////////////////////////////////////////////////////////////////////////////
-    public Celda(int miX, int miY, String strImg) {
+    public Celda(Tablero miTablero,int miFila, int miColumna, String strImg) {
         int i;
 
-        posX=miX;
-        posY=miY;
+        fila=miFila;
+        columna=miColumna;
+
+        posX=miTablero.getPosX()+(fila*LADO);
+        posY=miTablero.getPosY()+(columna*LADO);
 
         imgCelda = new Texture(strImg);
 

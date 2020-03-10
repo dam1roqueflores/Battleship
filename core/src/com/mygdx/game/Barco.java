@@ -33,7 +33,7 @@ public class Barco {
     /////////////////////////////////////////////////////////////////////////////////////
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
-    public Barco(int miFila, int miColumna, int miTamaño, boolean direccion, String miStrimg) {
+    public Barco(Tablero miTablero,int miFila, int miColumna, int miTamaño, boolean direccion, String miStrimg) {
         int i;
         Celda miCelda;
 
@@ -44,7 +44,7 @@ public class Barco {
 
         // creamos la lista de celdas que será nuestro barco
         for (i=0;i<tamano;i++){
-            miCelda = new Celda(fila,columna,rutaImagen);
+            miCelda = new Celda(miTablero,fila,columna,rutaImagen);
             listaCeldasBarco.add(miCelda);
         }
     }
@@ -55,6 +55,19 @@ public class Barco {
             miCelda.pintarse(miCelda.getPosX(), miCelda.getPosY(),miSB,miString);
         }
     }
+    // comprueba si el barco a comprobar choca con el barco elegido.
+    public boolean chocaBarco(Barco miBarco){
+        boolean resultado=false;
+        int i;
+        for (i=0;i<listaCeldasBarco.size();i++) {
+            if (listaCeldasBarco.get(i).getFila()== miBarco.getFila() && listaCeldasBarco.get(i).getColumna()== miBarco.getColumna()) {
+                resultado= true;
+            }
+        }
+        return resultado;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////
+    //  Getters
     public int getFila() {
         return fila;
     }
@@ -67,7 +80,7 @@ public class Barco {
         return tamano;
     }
 
-    public boolean Direccion() {
+    public boolean isDireccion() {
         return direccion;
     }
 }

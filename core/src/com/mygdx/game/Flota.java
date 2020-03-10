@@ -43,7 +43,7 @@ public class Flota {
 
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
-    public Flota(boolean TFlota, int misFilas, int misColumnas) {
+    public Flota(Tablero miTablero,boolean TFlota, int misFilas, int misColumnas) {
 
 
         tipoflota =TFlota;
@@ -64,7 +64,7 @@ public class Flota {
         if (tipoflota) {
             generarFlotaAmiga();
         } else {
-            generarFlotaEnemiga();
+            generarFlotaEnemiga(miTablero);
         }
 
     }
@@ -77,7 +77,7 @@ public class Flota {
         // aqui generaremos la flota amiga
     }
     // creamos la flota enemiga
-    private void generarFlotaEnemiga(){
+    private void generarFlotaEnemiga(Tablero miTablero){
         // datos del barco
         int miColumna;
         int miFila;
@@ -85,14 +85,12 @@ public class Flota {
         boolean miDirección;
         // objeto barco para ir añadiendo a la lista de barcos
         Barco miBarco;
-        // Semáforo para wl while
+        // Semáforo para while
         boolean comprobar;
         // contadores
         int i;
-        int j;
 
-
-        //recorremos los barcos en i va la cantidad de barcos a generar
+        //recorremos los barcos, en i va la cantidad de barcos a generar
         for (i=0;i<NUMBARCOS;i++) {
             // generamos los barcos comprobando los limites
             comprobar=false;
@@ -105,7 +103,7 @@ public class Flota {
                 miColumna = (int) (Math.random() * numFilas);
                 miFila = (int) (Math.random() * numColumnas);
                 tamaño=listaTipoBarco[i][2];
-                miBarco = new Barco(miFila,miColumna,tamaño,strImg);
+                miBarco = new Barco(miTablero,miFila,miColumna,tamaño,miDirección,strImg);
                 comprobar=compruebaNuevoBarco(miBarco);
                 if (comprobar) {
                     listaBarcos.add(miBarco);
@@ -113,36 +111,39 @@ public class Flota {
             }
         }
     }
+    // comprueba si el barco choca con los límites del tablero
     public boolean compruebaTableroExt(Barco miBarco){
          boolean resultado=true;
          // comprobamos límites del tablero
-         if (miBarco.get)) {
+         if (miBarco.isDireccion()) {
              // la dirección aleatorio es horizontal
-             if ((miBarco.getTamano()+miBarco.get)>numFilas){
+             if ((miBarco.getTamano()+miBarco.getColumna())>numFilas){
                  // si las filas mas el tamaño del barco es superior a las filas nos salimos
                  resultado=false;
              }
          } else {
              // la dirección aleatoria es vertical
-             if ((col+tamaño)>numColumnas){
+             if ((miBarco.getTamano()+ miBarco.getFila())>numColumnas){
                  // si las columnas mas el tamaño del barco es superior a las columnas nos salimos
                  resultado=false;
              }
          }
-
          return resultado;
     }
-
-    public boolean compruebaBarcos(boolean horizontal,int col,int fil,int tamaño){
+// comprueba si el barco choca con algún barco ya creado en la flota, devuelve true si choca y false si no choca.
+    public boolean compruebaBarcos(Barco miBarco){
         boolean resultado=true;
-         ////////
-
-
+        int i; //Contador de barcos en la flota
+        int j; // contador de celdas en el barco a comprobar
+         // recorremos los barcos ya almacenados en la flota para compararlos con el barco que nos mandan a comprobar
+        for (i=0;i<=listaBarcos.size();i++) {
+            resultado=miBarco.chocaBarco(listaBarcos.get(i));
+        }
         return resultado;
     }
 
-    public boolean compruebaNuevoBarco(boolean horizontal,int col,int fil,int tamaño){
-        return compruebaTableroExt(horizontal,col,fil,tamaño) && compruebaBarcos(horizontal,col,fil,tamaño);
+    public boolean compruebaNuevoBarco(Barco miBarco){
+        return compruebaTableroExt(miBarco) && compruebaBarcos(miBarco);
     }
 
     // liberamos recursos
