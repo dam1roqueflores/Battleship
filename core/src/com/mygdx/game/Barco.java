@@ -19,10 +19,10 @@ public class Barco {
     private int fila;
     private int columna;
     private int tamano; // número de celdas del barco de 3 celda a 6 celdas.
-    private boolean direccion;
-    String rutaImagen;
+    private boolean direccion; //true horizontal
+    private String rutaImagen;
 
-    ArrayList <Celda> listaCeldasBarco;
+     private int[][] listaCeldasBarco;
 
 
 
@@ -33,19 +33,22 @@ public class Barco {
     /////////////////////////////////////////////////////////////////////////////////////
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
-    public Barco(Tablero miTablero,int miFila, int miColumna, int miTamaño, boolean direccion, String miStrimg) {
+    public Barco(int miFila, int miColumna, int miTamaño, boolean direccion, String miStrimg) {
         int i;
+        int j;
         Celda miCelda;
 
         fila=miFila;
         columna=miColumna;
         tamano=miTamaño;
         rutaImagen=miStrimg;
+        listaCeldasBarco
 
         // creamos la lista de celdas que será nuestro barco
-        for (i=0;i<tamano;i++){
-            miCelda = new Celda(miTablero,fila,columna,rutaImagen);
-            listaCeldasBarco.add(miCelda);
+        for (i=0;i<miFila;i++){
+            for (j=0;j<miColumna;j++) {
+                listaCeldasBarco [i][j];
+            }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////

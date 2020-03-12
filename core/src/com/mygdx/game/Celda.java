@@ -14,8 +14,7 @@ public class Celda {
     //CONSTANTES
     short LADO=32;
     // Resto de estados
-    private int fila;
-    private int columna;
+
     private int posX;
     private int posY;
 
@@ -29,16 +28,11 @@ public class Celda {
     //      CONSTRUCTOR
     //
     /////////////////////////////////////////////////////////////////////////////////////
-    public Celda(Tablero miTablero,int miFila, int miColumna, String strImg) {
+    public Celda(int miX, int miY, String strImg) {
         int i;
 
-        fila=miFila;
-        columna=miColumna;
 
-        posX=miTablero.getPosX()+(fila*LADO);
-        posY=miTablero.getPosY()+(columna*LADO);
-
-        imgCelda = new Texture(strImg);
+        posX=miX;
 
     }
     /////////////////////////////////////////////////////////////////////////////////////
@@ -70,5 +64,13 @@ public class Celda {
 
     public int getPosY() {
         return posY;
+    }
+
+    public int getFila() {
+        return fila;
+    }
+
+    public int getColumna() {
+        return columna;
     }
 }

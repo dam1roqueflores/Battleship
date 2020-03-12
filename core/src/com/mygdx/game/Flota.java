@@ -12,6 +12,7 @@ public class Flota {
     //
     /////////////////////////////////////////////////////////////////////////////////////
     //CONSTANTES
+
     //Barcos que contiene la flota
     private final int NUMBARCOS=4; // NÚMERO DE BARCOS PARA EL ARRAY
     private final int NCELDAS=4;  // NÚMERO DE CELDAS PARA EL ARRAY
@@ -43,7 +44,7 @@ public class Flota {
 
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
-    public Flota(Tablero miTablero,boolean TFlota, int misFilas, int misColumnas) {
+    public Flota(boolean TFlota, int misFilas, int misColumnas) {
 
 
         tipoflota =TFlota;
@@ -64,7 +65,7 @@ public class Flota {
         if (tipoflota) {
             generarFlotaAmiga();
         } else {
-            generarFlotaEnemiga(miTablero);
+            generarFlotaEnemiga();
         }
 
     }
@@ -77,7 +78,7 @@ public class Flota {
         // aqui generaremos la flota amiga
     }
     // creamos la flota enemiga
-    private void generarFlotaEnemiga(Tablero miTablero){
+    private void generarFlotaEnemiga(){
         // datos del barco
         int miColumna;
         int miFila;
@@ -103,7 +104,7 @@ public class Flota {
                 miColumna = (int) (Math.random() * numFilas);
                 miFila = (int) (Math.random() * numColumnas);
                 tamaño=listaTipoBarco[i][2];
-                miBarco = new Barco(miTablero,miFila,miColumna,tamaño,miDirección,strImg);
+                miBarco = new Barco(miFila,miColumna,tamaño,miDirección,strImg);
                 comprobar=compruebaNuevoBarco(miBarco);
                 if (comprobar) {
                     listaBarcos.add(miBarco);
@@ -132,12 +133,13 @@ public class Flota {
     }
 // comprueba si el barco choca con algún barco ya creado en la flota, devuelve true si choca y false si no choca.
     public boolean compruebaBarcos(Barco miBarco){
-        boolean resultado=true;
+        boolean resultado=false;
         int i; //Contador de barcos en la flota
-        int j; // contador de celdas en el barco a comprobar
          // recorremos los barcos ya almacenados en la flota para compararlos con el barco que nos mandan a comprobar
-        for (i=0;i<=listaBarcos.size();i++) {
-            resultado=miBarco.chocaBarco(listaBarcos.get(i));
+        i=0;
+        while (!resultado && i<=listaBarcos.size()) {
+            resultado=miBarco.comprobar(listaBarcos.get(i));
+            i++;
         }
         return resultado;
     }
