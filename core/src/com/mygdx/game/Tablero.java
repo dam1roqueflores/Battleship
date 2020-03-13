@@ -72,7 +72,7 @@ public class Tablero {
     public void pintarse(SpriteBatch miSB){
 
         for (Celda miCelda:listaCeldas){
-            miCelda.pintarse(miCelda.getPosX(),miCelda.getPosY(),miSB,listaStrImg.get(contador));
+            miCelda.pintarse(miCelda.getPosX(), miCelda.getPosY(),miSB);
         }
         if (contadorCambio>TASACAMBIO) {
             contadorCambio=0;
@@ -85,7 +85,7 @@ public class Tablero {
         }
     }
     // comprobamos si se ha pulsado sobre una celda del tablero
-    public boolean comprobar(int miX, int miY){
+    /*public boolean comprobar(int miX, int miY){
         boolean resultado=false;
         int contador=0;
 
@@ -101,7 +101,7 @@ public class Tablero {
     // liberamos tablero de memoria
     public void dispose(){
         this.dispose();
-    }
+    }*/
 
     /////////////////////////////////////////////////
     // Getters

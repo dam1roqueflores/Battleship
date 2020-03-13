@@ -52,7 +52,7 @@ public class Celda {
         boolean resultado=false;
         resultado=(posX+LADO<miX && posX>miX) && (posY+LADO<miY && posY > miY);
         return resultado;
-    }
+    }*/
 /////////////////////////////////////////////////////////////////////////////////////////
     //  Getters
     ////////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ public class Celda {
     public int getPosY() {
         return posY;
     }
-
+/*
     public int getFila(int xTablero, int xPulsado) {
         int fila;
 

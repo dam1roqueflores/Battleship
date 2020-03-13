@@ -22,7 +22,7 @@ public class Barco {
     private boolean direccion; //true horizontal
     private String rutaImagen;
 
-     private int[][] listaCeldasBarco;
+     private ArrayList <Celda> listaCeldasBarco;
 
 
 
@@ -42,12 +42,12 @@ public class Barco {
         columna=miColumna;
         tamano=miTamaño;
         rutaImagen=miStrimg;
-        listaCeldasBarco
 
         // creamos la lista de celdas que será nuestro barco
         for (i=0;i<miFila;i++){
             for (j=0;j<miColumna;j++) {
-                listaCeldasBarco [i][j];
+                miCelda= new Celda(miFila, miColumna,miStrimg);
+                listaCeldasBarco [i][j]=miCelda;
             }
         }
     }
