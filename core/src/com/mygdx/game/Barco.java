@@ -16,12 +16,16 @@ public class Barco {
     //CONSTANTES
 
     //Resto de estados
-    int posX;
-    int posY;
-    int numCeldas; // número de celdas del barco de 1 celda a 4 celdas.
-    String rutaImagen;
+    private int fila;
+    private int columna;
+    private int tamano; // número de celdas del barco de 3 celda a 6 celdas.
+    private boolean direccion; //true horizontal
+    private String rutaImagen;
 
-    ArrayList <Celda> listaCeldasBarco;
+     private int[][] listaCeldasBarco;
+
+
+
     /////////////////////////////////////////////////////////////////////////////////////
     //
     //COMPORTAMIENTOS
@@ -29,19 +33,22 @@ public class Barco {
     /////////////////////////////////////////////////////////////////////////////////////
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
-    public Barco(int miX, int miY, short miCeldas, String miStrimg) {
+    public Barco(int miFila, int miColumna, int miTamaño, boolean direccion, String miStrimg) {
         int i;
+        int j;
         Celda miCelda;
 
-        posX=miX;
-        posY=miY;
-        numCeldas=miCeldas;
+        fila=miFila;
+        columna=miColumna;
+        tamano=miTamaño;
         rutaImagen=miStrimg;
+        listaCeldasBarco
 
         // creamos la lista de celdas que será nuestro barco
-        for (i=0;i<numCeldas;i++){
-            miCelda = new Celda(posX,posY,rutaImagen);
-            listaCeldasBarco.add(miCelda);
+        for (i=0;i<miFila;i++){
+            for (j=0;j<miColumna;j++) {
+                listaCeldasBarco [i][j];
+            }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////
@@ -51,5 +58,32 @@ public class Barco {
             miCelda.pintarse(miCelda.getPosX(), miCelda.getPosY(),miSB,miString);
         }
     }
+    // comprueba si el barco a comprobar choca con el barco elegido.
+    public boolean chocaBarco(Barco miBarco){
+        boolean resultado=false;
+        int i;
+        for (i=0;i<listaCeldasBarco.size();i++) {
+            if (listaCeldasBarco.get(i).getFila()== miBarco.getFila() && listaCeldasBarco.get(i).getColumna()== miBarco.getColumna()) {
+                resultado= true;
+            }
+        }
+        return resultado;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////
+    //  Getters
+    public int getFila() {
+        return fila;
+    }
 
+    public int getColumna() {
+        return columna;
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+
+    public boolean isDireccion() {
+        return direccion;
+    }
 }

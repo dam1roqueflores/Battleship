@@ -12,7 +12,7 @@ public class Tablero {
     //
     /////////////////////////////////////////////////////////////////////////////////////
     //CONSTANTES
-    private final short LADO=32;
+    private final int LADO=32;
     private final String IMAGENAGUA="agua.png";
     private final String IMAGENAGUA1="agua1.png";
     private final String IMAGENAGUA2="agua2.png";
@@ -21,28 +21,28 @@ public class Tablero {
 
 
     //RESTO DE ESTADOS
-    private short filas;
-    private  short columnas;
+    private int filas;
+    private  int columnas;
     private int posX;
     private int posY;
 
     private ArrayList<Celda> listaCeldas;
     private ArrayList<String> listaStrImg; //lista de string para animaciones de la celda
 
-    short contador=0;
-    short contadorCambio=0;
+    int contador=0;
+    int contadorCambio=0;
     /////////////////////////////////////////////////////////////////////////////////////
     //
     //      CONSTRUCTOR
     //
     /////////////////////////////////////////////////////////////////////////////////////
-    public Tablero(int miPosX, int miPosY, short miFilas, short miColumnas) {
+    public Tablero(int miFilas, int miColumnas) {
         int i=0;
         int j=0;
+        int contadorImg=0;
+
         Celda miCelda;
 
-        posX=miPosX;
-        posY=miPosY;
         filas= miFilas;
         columnas=miColumnas;
         listaCeldas = new ArrayList();
@@ -56,8 +56,10 @@ public class Tablero {
 
         for (i=0;i<filas;i++){
             for (j=0;j<columnas;j++){
-                miCelda= new Celda(posX+(LADO*i),posY+(LADO*j),LADO,IMAGENAGUA);
+                miCelda= new Celda(miFilas,miColumnas,listaStrImg.get(contadorImg));
                 listaCeldas.add(miCelda);
+                contadorImg++;
+                if (contadorImg>3) {contadorImg=0;}
             }
         }
     }
@@ -99,5 +101,16 @@ public class Tablero {
     // liberamos tablero de memoria
     public void dispose(){
         this.dispose();
+    }
+
+    /////////////////////////////////////////////////
+    // Getters
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
     }
 }

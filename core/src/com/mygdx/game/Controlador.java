@@ -12,8 +12,8 @@ public class Controlador {
 
     //CONSTANTES
 
-    private final short FILAS =9;
-    private final short COLUMNAS =9;
+    private final int FILAS =9;
+    private final int COLUMNAS =9;
 
     private final boolean TIPOFLOTA=true; // true es una flota aliada, false es una flota enemiga
 
@@ -27,19 +27,19 @@ public class Controlador {
     private  int posXTableroE;
     private  int posYTableroE;
     //tableros de juego
-    Tablero tableroAmigo;
-    Tablero tableroEnemigo;
+    private Tablero tableroAmigo;
+    private Tablero tableroEnemigo;
     //flotas
-    Flota flotaAmiga;
-    Flota flotaEnemiga;
+    private Flota flotaAmiga;
+    private Flota flotaEnemiga;
 
     //Tendremos un SpriteBatch para dibujar en la pantalla
-    SpriteBatch batch;
+    private SpriteBatch batch;
 
     //Variable para saber el estado en el que estamos:
     // 0 . Pantalla inicio
     // 1. Jugando
-    int estadoJuego;
+    private int estadoJuego;
 
 
     /////////////////////////////////////////////////////////////////////////////////////
@@ -110,8 +110,8 @@ public class Controlador {
         if (recienTocado) {
            // comienza el juego, pintamos los tableros y generamos la flota
             estadoJuego=1;
-            flotaAmiga.generarFlota(TIPOFLOTA);
-            flotaEnemiga.generarFlota(!TIPOFLOTA);
+            flotaAmiga= new Flota(TIPOFLOTA,FILAS,COLUMNAS);
+            flotaEnemiga= new Flota(!TIPOFLOTA,FILAS,COLUMNAS);
         }
     }
 
@@ -123,10 +123,10 @@ public class Controlador {
         posXTableroE=posxTableroA*COLUMNAS;
         posYTableroE=posyTableroA;
 
-        tableroAmigo = new Tablero(posxTableroA,posyTableroA,FILAS,COLUMNAS );
-        tableroEnemigo = new Tablero(posXTableroE,posYTableroE,FILAS,COLUMNAS);
-        flotaAmiga = new Flota(TIPOFLOTA);
-        flotaEnemiga = new Flota(!TIPOFLOTA);
+        tableroAmigo = new Tablero(FILAS,COLUMNAS );
+        tableroEnemigo = new Tablero(FILAS,COLUMNAS);
+        flotaAmiga = new Flota(TIPOFLOTA,FILAS,COLUMNAS);
+        flotaEnemiga = new Flota(!TIPOFLOTA,FILAS,COLUMNAS);
         batch=new SpriteBatch();
     }
 
@@ -136,5 +136,13 @@ public class Controlador {
         tableroAmigo.pintarse(batch);
         //flotaEnemiga.generarFlota(batch);
         //flotaAmiga.generarFlota(batch);
+    }
+
+    public short getFILAS() {
+        return FILAS;
+    }
+
+    public short getCOLUMNAS() {
+        return COLUMNAS;
     }
 }
