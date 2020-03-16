@@ -7,83 +7,54 @@ import java.util.ArrayList;
 
 public class Barco {
 
-    /////////////////////////////////////////////////////////////////////////////////////
-    //
-    //ESTADOS
-    //
-    /////////////////////////////////////////////////////////////////////////////////////
 
-    //CONSTANTES
+    ////////////////////////
+    ///ESTADO
+    ///////////////////////
 
-    //Resto de estados
-    private int fila;
+    private boolean direccion;
     private int columna;
-    private int tamano; // número de celdas del barco de 3 celda a 6 celdas.
-    private boolean direccion; //true horizontal
-    private String rutaImagen;
+    private int size;
+    private short fila;
+    protected ArrayList<Celda> listacelda;
+    Celda barco;
+    //////////////////////
+    ///COMPORTAMIENTO
+    //////////////////////
 
-     private int[][] listaCeldasBarco;
+    public Barco(int nuevacolumna, int nuevosize, short nuevafila){
 
+        direccion = false;
+        columna = nuevacolumna;
+        size = nuevosize;
+        fila = nuevafila;
+        listacelda = new ArrayList();
 
+        for (size=0;size<4;size++) {
+            barco = new Celda((size+1)*fila,columna);
+            listacelda.add(barco);
+        }
 
-    /////////////////////////////////////////////////////////////////////////////////////
-    //
-    //COMPORTAMIENTOS
-    //
-    /////////////////////////////////////////////////////////////////////////////////////
-    // constructor
-    ////////////////////////////////////////////////////////////////////////////////////
-    public Barco(int miFila, int miColumna, int miTamaño, boolean direccion, String miStrimg) {
-        int i;
-        int j;
-        Celda miCelda;
+    }//Fin de constructor
 
-        fila=miFila;
-        columna=miColumna;
-        tamano=miTamaño;
-        rutaImagen=miStrimg;
-        listaCeldasBarco
-
-        // creamos la lista de celdas que será nuestro barco
-        for (i=0;i<miFila;i++){
-            for (j=0;j<miColumna;j++) {
-                listaCeldasBarco [i][j];
+    public void pintarse(int posX, int posY) {
+        //Comportamiento para pintar el barco.
+        if (direccion = true) { //direccion=true significa horizontal, por lo que sería columna++
+            for (Celda barco : listacelda){
+                barco.pintarse(columna++);
             }
         }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////
-    // resto de comportamientos
-    public void pintarse(SpriteBatch miSB, String miString){
-        for (Celda miCelda:listaCeldasBarco){
-            miCelda.pintarse(miCelda.getPosX(), miCelda.getPosY(),miSB,miString);
-        }
-    }
-    // comprueba si el barco a comprobar choca con el barco elegido.
-    public boolean chocaBarco(Barco miBarco){
-        boolean resultado=false;
-        int i;
-        for (i=0;i<listaCeldasBarco.size();i++) {
-            if (listaCeldasBarco.get(i).getFila()== miBarco.getFila() && listaCeldasBarco.get(i).getColumna()== miBarco.getColumna()) {
-                resultado= true;
+        else { //Aquí sería vertical, o sea, fila++
+            for (Celda barco : listacelda){
+                barco.pintarse(fila++);
             }
         }
-        return resultado;
-    }
-    //////////////////////////////////////////////////////////////////////////////////////
-    //  Getters
-    public int getFila() {
-        return fila;
+
     }
 
-    public int getColumna() {
-        return columna;
+    public void comprobarse(){
+
+
     }
 
-    public int getTamano() {
-        return tamano;
-    }
-
-    public boolean isDireccion() {
-        return direccion;
-    }
 }
