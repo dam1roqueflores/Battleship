@@ -27,7 +27,7 @@ public class Flota {
     private final int NBARCO3 = 2; // Habrá 2 barcos de TIPO3
     private final int NBARCO4 = 1; // Habrá 1 barco de TIPO4
 
-    private final String strImg="barco.png";
+    //private final String strImg="barco.png";
 
 
     // Resto de estados
@@ -82,7 +82,7 @@ public class Flota {
         // datos del barco
         int miColumna;
         int miFila;
-        int tamaño;
+        int size;
         boolean miDirección;
         // objeto barco para ir añadiendo a la lista de barcos
         Barco miBarco;
@@ -103,8 +103,8 @@ public class Flota {
                 }
                 miColumna = (int) (Math.random() * numFilas);
                 miFila = (int) (Math.random() * numColumnas);
-                tamaño=listaTipoBarco[i][2];
-                miBarco = new Barco(miFila,miColumna,tamaño,miDirección,strImg);
+                size=listaTipoBarco[i][2];
+                miBarco = new Barco(miDirección,miColumna,miFila,size);
                 comprobar=compruebaNuevoBarco(miBarco);
                 if (comprobar) {
                     listaBarcos.add(miBarco);
@@ -118,13 +118,13 @@ public class Flota {
          // comprobamos límites del tablero
          if (miBarco.isDireccion()) {
              // la dirección aleatorio es horizontal
-             if ((miBarco.getTamano()+miBarco.getColumna())>numFilas){
+             if ((miBarco.getSize()+miBarco.getColumna())>numFilas){
                  // si las filas mas el tamaño del barco es superior a las filas nos salimos
                  resultado=false;
              }
          } else {
              // la dirección aleatoria es vertical
-             if ((miBarco.getTamano()+ miBarco.getFila())>numColumnas){
+             if ((miBarco.getSize()+ miBarco.getFila())>numColumnas){
                  // si las columnas mas el tamaño del barco es superior a las columnas nos salimos
                  resultado=false;
              }

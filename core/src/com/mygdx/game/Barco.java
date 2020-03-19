@@ -3,6 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import org.omg.CORBA.WStringSeqHelper;
+
 import java.util.ArrayList;
 
 public class Barco {
@@ -15,14 +17,15 @@ public class Barco {
     private boolean direccion;
     private int columna;
     private int size;
-    private short fila;
+    private int fila;
+    private String imagenBarco;
     protected ArrayList<Celda> listacelda;
     Celda barco;
     //////////////////////
     ///COMPORTAMIENTO
     //////////////////////
 
-    public Barco(int nuevacolumna, int nuevosize, short nuevafila){
+    public Barco(boolean direccion, int nuevacolumna, int nuevafila, int nuevosize){
 
         direccion = false;
         columna = nuevacolumna;
@@ -31,7 +34,7 @@ public class Barco {
         listacelda = new ArrayList();
 
         for (size=0;size<4;size++) {
-            barco = new Celda((size+1)*fila,columna);
+            barco = new Celda((size+1)*fila,columna,imagenBarco);
             listacelda.add(barco);
         }
 
@@ -52,9 +55,26 @@ public class Barco {
 
     }
 
-    public void comprobarse(){
+    public boolean comprobar(Barco miBarco){
 
 
     }
+    /////////////////////////////////////////////////////////
+    //  Getters
+    ///////////////////////////////////////////////////////
+    public boolean isDireccion() {
+        return direccion;
+    }
 
+    public int getSize() {
+        return size;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
+
+    public int getFila() {
+        return fila;
+    }
 }
