@@ -22,10 +22,10 @@ public class Barco {
     protected ArrayList<Celda> listacelda;
     Celda barco;
     //////////////////////
-    ///COMPORTAMIENTO
+    ///COMPORTAMIENTOS
     //////////////////////
-
-    public Barco(boolean direccion, int nuevacolumna, int nuevafila, int nuevosize){
+    // constructor
+    public Barco(boolean direccion, int nuevacolumna, int nuevafila, int nuevosize,int posxTablero, int posyTablero,int lado){
 
         direccion = false;
         columna = nuevacolumna;
@@ -40,7 +40,7 @@ public class Barco {
 
     }//Fin de constructor
 
-    public void pintarse(int posX, int posY) {
+    public void pintarse(int posX, int posY,boolean miDireccion,int miSize, int miPosxTablero, int miPosyTablero,int miLado) {
         //Comportamiento para pintar el barco.
         if (direccion = true) { //direccion=true significa horizontal, por lo que sería columna++
             for (Celda barco : listacelda){
@@ -57,6 +57,10 @@ public class Barco {
 
     public boolean comprobar(Barco miBarco){
 
+
+    }
+
+    public boolean estaHundido(){
 
     }
     /////////////////////////////////////////////////////////

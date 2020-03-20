@@ -27,7 +27,6 @@ public class Flota {
     private final int NBARCO3 = 2; // Habrá 2 barcos de TIPO3
     private final int NBARCO4 = 1; // Habrá 1 barco de TIPO4
 
-    //private final String strImg="barco.png";
 
 
     // Resto de estados
@@ -36,6 +35,9 @@ public class Flota {
     private int numColumnas;
     private int[][] listaTipoBarco; // creamos una lista para cargar los tipos de barcos
     private ArrayList<Barco> listaBarcos;
+    private int posxTablero;
+    private int posyTablero;
+    private int lado;
     /////////////////////////////////////////////////////////////////////////////////////
     //
     //COMPORTAMIENTOS
@@ -44,12 +46,15 @@ public class Flota {
 
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
-    public Flota(boolean TFlota, int misFilas, int misColumnas) {
+    public Flota(boolean TFlota, int misFilas, int misColumnas, int mixTablero, int miytablero, int milado) {
 
 
         tipoflota =TFlota;
         numFilas=misFilas;
         numColumnas=misColumnas;
+        posxTablero=mixTablero;
+        posyTablero=miytablero;
+        lado=milado;
         
         // inicializamos el array
         listaTipoBarco = new int[NUMBARCOS][NCELDAS];
@@ -75,7 +80,8 @@ public class Flota {
     ////////////////////////////////////////////////////////////////////////////////////
     // creamos la flota amiga
     private void generarFlotaAmiga(){
-        // aqui generaremos la flota amiga
+        // aqui generaremos la flota amiga, de momento es igual que la enemiga
+        generarFlotaEnemiga();
     }
     // creamos la flota enemiga
     private void generarFlotaEnemiga(){
@@ -104,7 +110,7 @@ public class Flota {
                 miColumna = (int) (Math.random() * numFilas);
                 miFila = (int) (Math.random() * numColumnas);
                 size=listaTipoBarco[i][2];
-                miBarco = new Barco(miDirección,miColumna,miFila,size);
+                miBarco = new Barco(miDirección,miColumna,miFila,size,posxTablero,posyTablero,lado);
                 comprobar=compruebaNuevoBarco(miBarco);
                 if (comprobar) {
                     listaBarcos.add(miBarco);
@@ -143,11 +149,31 @@ public class Flota {
         }
         return resultado;
     }
-
+// compueba barco y tablero
     public boolean compruebaNuevoBarco(Barco miBarco){
         return compruebaTableroExt(miBarco) && compruebaBarcos(miBarco);
     }
+    // pinta la flota
+    public void pintarse(){
+        for (Barco mibarco:listaBarcos) {
+            mibarco.pintarse(mibarco.getFila(),mibarco.getColumna(),mibarco.isDireccion(), mibarco.getSize(), posxTablero,posyTablero,lado);
+        }
+    }
+    // comprueba que están todos los barcos hundidos devuelve true si quedan barcos por hundir y false si están todos hundidos
+    public boolean quedanBarcos(){
+        boolean resultado=false;
+        int contador=0;
+        Barco miBarco;
 
+        while (contador<listaBarcos.size() && !resultado) {
+            if (listaBarcos.get(contador).estaHundido()){
+                resultado=false;
+            } else{
+                resultado=true;
+            }
+        }
+        return resultado;
+    }
     // liberamos recursos
     public void dispose(){
         this.dispose();
