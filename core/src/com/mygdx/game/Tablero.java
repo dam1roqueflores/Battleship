@@ -37,6 +37,8 @@ public class Tablero {
     public Tablero(int posXtablero,int posYtablero,boolean Flotatype){
         posX=posXtablero;
         posY=posYtablero;
+
+
         contpintar=0;
 
         //creamos array list con toda array list
@@ -55,7 +57,7 @@ public class Tablero {
         }
 
         //instanciamos la flota
-        miflota= new Flota(Flotatype,FILAS,COLUMNAS);
+        miflota= new Flota(Flotatype,FILAS,COLUMNAS,posXtablero,posYtablero,LADO);
 
         //inicializamos imagen
 
@@ -63,7 +65,7 @@ public class Tablero {
 
         //iniciamos la celda
 
-        micelda= new Celda(posXcelda,posYcelda,FILEAGUA1); //no se que ingredientes hacen falta
+        micelda= new Celda(posX,posY,FILEAGUA1);
 
 
 
@@ -76,7 +78,7 @@ public class Tablero {
         int filas=traducirfila(posydisp);
         int columnas=traducircolumna(posxdisp);
 
-        if (mapabooleano.get(filas).get(columnas)==true || flota.ispulsado()==true){ //or flota ispulsado==true
+        if (mapabooleano.get(filas).get(columnas)==true || miflota.ispulsado()==true){ //or flota ispulsado==true
             miboolean=true;
         } else {
             miboolean=false;
@@ -123,9 +125,8 @@ public class Tablero {
                     } else {
                         contpintar=0;
                     }
-
                 }
-                micelda.pintarse((posX+(cont1*LADO),posY+(cont2*LADO),texturapintar); //tectura agua pulsada
+                micelda.pintarse(posX+(cont1*LADO),posY+(cont2*LADO),texturapintar); //tectura agua pulsada
             }
 
             //  micelda.pintarse(posX+(cont1*LADO),posy+(cont2*LADO)textura;
@@ -150,4 +151,5 @@ public class Tablero {
         int columna;
         columna=posX+(pulposx/LADO); //yini(tablero)+(pulposy/lado)
         return columna;
+    }
 }
