@@ -77,8 +77,8 @@ public class Tablero {
         boolean miboolean;
         int filas=traducirfila(posydisp);
         int columnas=traducircolumna(posxdisp);
-
-        if (mapabooleano.get(filas).get(columnas)==true || miflota.ispulsado()==true){ //or flota ispulsado==true
+{
+        if (mapabooleano.get(filas).get(columnas)==true) {//|| miflota.ispulsado()==true){ //or flota ispulsado==true
             miboolean=true;
         } else {
             miboolean=false;

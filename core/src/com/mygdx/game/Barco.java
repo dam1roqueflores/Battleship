@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Barco {
 
-
     ////////////////////////
     ///ESTADO
     ///////////////////////
@@ -18,67 +17,76 @@ public class Barco {
     private int columna;
     private int size;
     private int fila;
-    private String imagenBarco;
-    protected ArrayList<Celda> listacelda;
-    Celda barco;
-    //////////////////////
-    ///COMPORTAMIENTOS
-    //////////////////////
-    // constructor
-    public Barco(boolean direccion, int nuevacolumna, int nuevafila, int nuevosize,int posxTablero, int posyTablero,int lado){
+    private ArrayList<Celda> listaCeldas;
+    private static final String FICHERO_BARCO = "barco.png";
+    private boolean EstaHundido;
 
-        direccion = false;
-        columna = nuevacolumna;
-        size = nuevosize;
-        fila = nuevafila;
-        listacelda = new ArrayList();
+    //////////////////////
+    ///COMPORTAMIENTO
+    //////////////////////
 
-        for (size=0;size<4;size++) {
-            barco = new Celda((size+1)*fila,columna,imagenBarco);
-            listacelda.add(barco);
+    public Barco(boolean miDireccion, int miColumna, int miSize, int miFila, int posXTablero, int posYTablero, int lado){
+
+        int i;
+        Celda miCelda;
+
+        direccion = miDireccion;
+        columna = miColumna;
+        size = miSize;
+        fila = miFila;
+        listaCeldas = new ArrayList();
+
+
+
+        for (i=0;i<size;i++) {
+            if (direccion = true) {
+                miCelda = new Celda(posXTablero + (i + columna - 1) * lado, posYTablero + (fila - 1) * lado, FICHERO_BARCO);
+                listaCeldas.add(miCelda);
+            } else {
+                miCelda = new Celda(posXTablero + (columna - 1) * lado, posYTablero + (i + fila - 1) * lado, FICHERO_BARCO);
+                listaCeldas.add(miCelda);
+            }
         }
-
     }//Fin de constructor
 
-    public void pintarse(int posX, int posY,boolean miDireccion,int miSize, int miPosxTablero, int miPosyTablero,int miLado) {
-        //Comportamiento para pintar el barco.
-        if (direccion = true) { //direccion=true significa horizontal, por lo que sería columna++
-            for (Celda barco : listacelda){
-                barco.pintarse(columna++);
-            }
+    public void pintarse(SpriteBatch miSB) {
+        for (Celda miCelda : listaCeldas) {
+            miCelda.pintarse(miSB);
         }
-        else { //Aquí sería vertical, o sea, fila++
-            for (Celda barco : listacelda){
-                barco.pintarse(fila++);
-            }
-        }
-
     }
 
-    public boolean comprobar(Barco miBarco){
+    public boolean comprobarse() {
 
-
+        return false;
     }
 
-    public boolean estaHundido(){
 
-    }
-    /////////////////////////////////////////////////////////
-    //  Getters
-    ///////////////////////////////////////////////////////
+
+
+//Getters
+
     public boolean isDireccion() {
+
         return direccion;
     }
 
     public int getSize() {
+
         return size;
     }
 
     public int getColumna() {
+
         return columna;
     }
 
     public int getFila() {
+
         return fila;
+    }
+
+    public boolean isEstaHundido() {
+
+        return EstaHundido;
     }
 }
