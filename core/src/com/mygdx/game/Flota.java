@@ -144,7 +144,11 @@ public class Flota {
          // recorremos los barcos ya almacenados en la flota para compararlos con el barco que nos mandan a comprobar
         i=0;
         while (!resultado && i<=listaBarcos.size()) {
-            resultado=miBarco.comprobar(listaBarcos.get(i));
+            if (miBarco==listaBarcos.get(i)){
+                resultado=true;
+            }else {
+                resultado=false;
+            };
             i++;
         }
         return resultado;
@@ -167,7 +171,7 @@ public class Flota {
         Barco miBarco;
 
         while (contador<listaBarcos.size() && !resultado) {
-            if (listaBarcos.get(contador).estaHundido()){
+            if (listaBarcos.get(contador).isEstaHundido()){
                 resultado=false;
             } else{
                 resultado=true;
