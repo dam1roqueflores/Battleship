@@ -52,7 +52,7 @@ public class ControladorJuego {
     //Tendremos un SpriteBatch para dibujar en la pantalla
     protected SpriteBatch batch;
 
-    protected int pasos
+    protected int pasos;
     /////////////////////////////////////////////////////////////////////////////////////
     //
     //COMPORTAMIENTO
