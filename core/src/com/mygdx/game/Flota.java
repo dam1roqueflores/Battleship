@@ -155,8 +155,9 @@ public class Flota {
     }
     // pinta la flota
     public void pintarse(){
+        SpriteBatch miSB=null;
         for (Barco mibarco:listaBarcos) {
-            mibarco.pintarse(mibarco.getFila(),mibarco.getColumna(),mibarco.isDireccion(), mibarco.getSize(), posxTablero,posyTablero,lado);
+            mibarco.pintarse(miSB);
         }
     }
     // comprueba que están todos los barcos hundidos devuelve true si quedan barcos por hundir y false si están todos hundidos
