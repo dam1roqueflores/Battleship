@@ -77,8 +77,8 @@ public class Tablero {
         boolean miboolean;
         int filas=traducirfila(posydisp);
         int columnas=traducircolumna(posxdisp);
-{
-        if (mapabooleano.get(filas).get(columnas)==true) {//|| miflota.ispulsado()==true){ //or flota ispulsado==true
+
+        if (mapabooleano.get(filas).get(columnas)==true){// || flota.ispulsado()==true){ //or flota ispulsado==true
             miboolean=true;
         } else {
             miboolean=false;
@@ -126,13 +126,34 @@ public class Tablero {
                         contpintar=0;
                     }
                 }
-                micelda.pintarse(posX+(cont1*LADO),posY+(cont2*LADO),texturapintar); //tectura agua pulsada
+                // micelda.pintarse((posX+(cont1*LADO),posY+(cont2*LADO),texturapintar)); //tectura agua pulsada
             }
 
             //  micelda.pintarse(posX+(cont1*LADO),posy+(cont2*LADO)textura;
             //pinto celdas en base la array de true o false
-            //celda.pintarse(posX+(cont1*LADO),posY+(cont2*LADO),imagen);
+            //celda.pintarse(posX+(cont1*LADO),pos
+            Y+(cont2*LADO),imagen);
         }
+
+
+        //luego se pint        a la flota
+        // miflota.pintarse(miSB);
+
+    }
+
+
+    private int traducirfila(int pulposy){
+        int fila;
+        fila=posY+(pulposy/LADO); //yini(tablero)+(pulposy/lado)
+        return fila;
+    }
+
+    private int traducircolumna(int pulposx){
+        int columna;
+        columna=posX+(pulposx/LADO); //yini(tablero)+(pulposy/lado)
+        return columna;
+    }
+}
 
 
         //luego se pint        a la flota
