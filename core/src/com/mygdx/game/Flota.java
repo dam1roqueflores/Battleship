@@ -46,10 +46,10 @@ public class Flota {
 
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
-    public Flota(boolean TFlota, int misFilas, int misColumnas, int mixTablero, int miytablero, int milado) {
+    public Flota(int misFilas, int misColumnas, int mixTablero, int miytablero, int milado) {
 
 
-        tipoflota =TFlota;
+
         numFilas=misFilas;
         numColumnas=misColumnas;
         posxTablero=mixTablero;
@@ -67,12 +67,7 @@ public class Flota {
         listaTipoBarco[4][1]=NCELDAS4;
         listaTipoBarco[4][2]=NBARCO4;
 
-        if (tipoflota) {
-            generarFlotaAmiga();
-        } else {
-            generarFlotaEnemiga();
-        }
-
+        generarFlotaEnemiga();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////
@@ -158,8 +153,8 @@ public class Flota {
         return compruebaTableroExt(miBarco) && compruebaBarcos(miBarco);
     }
     // pinta la flota
-    public void pintarse(){
-        SpriteBatch miSB=null;
+    public void pintarse(SpriteBatch miSB){
+
         for (Barco mibarco:listaBarcos) {
             mibarco.pintarse(miSB);
         }
