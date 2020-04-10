@@ -59,7 +59,7 @@ public class Tablero {
         ancho=anchoDisponible;
 
         tam_cel_x=(int)(anchoDisponible * (1.0f-margen*2.0f)/tamtablero);
-        tam_cel_x=(int)(altoDisponible * (1.0f-margen*2.0f)/tamtablero);
+        tam_cel_y=(int)(altoDisponible * (1.0f-margen*2.0f)/tamtablero);
 
         //for (int k=1;k<tamtablero;k++){
         //  mapa.add(new ArrayList());
@@ -168,4 +168,19 @@ public class Tablero {
         miflota.dispose();
     }
 
+    public int getPosX(){
+        return posX;
+    }
+
+    public int getPosY(){
+        return posY;
+    }
+
+    public int getPosFinalX(){
+        return posX+(tam_cel_x*tamtablero);
+    }
+
+    public int getPosFinalY(){
+        return posY+(tam_cel_y*tamtablero);
+    }
 }
