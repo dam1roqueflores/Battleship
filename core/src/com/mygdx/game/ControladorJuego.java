@@ -104,7 +104,7 @@ public class ControladorJuego {
         }
         //Tableros
         for (Tablero tableros : misTableros) {
-            tableros.dispose(batch);
+            tableros.dispose();
         }
     }
     //Método de control del estado. Es interno. Para ayudar al método render
