@@ -135,7 +135,7 @@ public class Flota {
     }
 // comprueba si el barco choca con algún barco ya creado en la flota, devuelve true si choca y false si no choca.
     public boolean compruebaBarcos(Barco miBarco){
-        boolean resultado=false;
+        boolean resultado=true;
         int Cbarcos; //Contador de barcos en la flota
         int Cfilas;
         int Ccolumnas;
@@ -147,15 +147,17 @@ public class Flota {
         Ccolumnas=0;
         miFila=0;
         miColumna=0;
-        while (!resultado && Cbarcos<=listaBarcos.size()) {
-            while (Cfilas<=miBarco.getFila()+miBarco.getSize() && !resultado){
-                while (Ccolumnas<=miBarco.getColumna()+miBarco.getSize() && !resultado){
-                    if (listaBarcos.get(Cbarcos).getFila()==miBarco.getFila()+miFila && listaBarcos.get(Cbarcos).getColumna()==miBarco.getColumna()+miColumna){
-                        resultado=true;
+        while (resultado && Cbarcos<=listaBarcos.size()) {
+            while (Cfilas<=miBarco.getFila()+miBarco.getSize() && resultado){
+                while (Ccolumnas<=miBarco.getColumna()+miBarco.getSize() && resultado){
+                    if (listaBarcos.size()>0){
+                        if (listaBarcos.get(Cbarcos).getFila()==miBarco.getFila()+miFila && listaBarcos.get(Cbarcos).getColumna()==miBarco.getColumna()+miColumna){
+                            resultado=false;
+                        }
                     }
-                    miColumna++;
+                    Ccolumnas++;
                 }
-                miFila++;
+                Cfilas++;
             }
 
             Cbarcos++;
@@ -164,7 +166,7 @@ public class Flota {
     }
 // compueba barco y tablero
     public boolean compruebaNuevoBarco(Barco miBarco){
-        if (listaBarcos!=null)
+        if (listaBarcos.size()>0)
             return compruebaTableroExt(miBarco) && compruebaBarcos(miBarco);
         else{
             return compruebaTableroExt(miBarco);

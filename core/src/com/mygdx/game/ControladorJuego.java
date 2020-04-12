@@ -340,6 +340,7 @@ public class ControladorJuego {
 
         for (i = 0; i < NUMERO_TABLEROS; i++) {
             tablerito = new Tablero(0, 0, anchoT, altoT);
+            misTableros.add(tablerito);
         }
 
         //Creamos el turno
