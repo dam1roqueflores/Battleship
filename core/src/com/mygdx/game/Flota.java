@@ -17,14 +17,14 @@ public class Flota {
     private final int NUMBARCOS=4; // NÚMERO DE BARCOS PARA EL ARRAY
     private final int NCELDAS=4;  // NÚMERO DE CELDAS PARA EL ARRAY
 
-    private final int NCELDAS1 = 3; // LOS BARCOS DE TIPO1 TIENEN 3 celdas
-    private final int NCELDAS2 = 4; // LOS BARCOS DE TIPO2 TIENEN 4 celdas
-    private final int NCELDAS3 = 5; // LOS BARCOS DE TIPO3 TIENEN 5 celdas
-    private final int NCELDAS4 = 6; // LOS BARCOS DE TIPO1 TIENEN 6 celdas
+    private final int NCELDAS1 = 1; // LOS BARCOS DE TIPO1 TIENEN 3 celdas
+    private final int NCELDAS2 = 2; // LOS BARCOS DE TIPO2 TIENEN 4 celdas
+    private final int NCELDAS3 = 3; // LOS BARCOS DE TIPO3 TIENEN 5 celdas
+    private final int NCELDAS4 = 4; // LOS BARCOS DE TIPO1 TIENEN 6 celdas
 
-    private final int NBARCO1 = 4; // Habrá 4 barcos de TIPO1
-    private final int NBARCO2 = 3; // Habrá 3 barcos de TIPO2
-    private final int NBARCO3 = 2; // Habrá 2 barcos de TIPO3
+    private final int NBARCO1 = 1; // Habrá 4 barcos de TIPO1
+    private final int NBARCO2 = 1; // Habrá 3 barcos de TIPO2
+    private final int NBARCO3 = 1; // Habrá 2 barcos de TIPO3
     private final int NBARCO4 = 1; // Habrá 1 barco de TIPO4
 
 
@@ -58,15 +58,16 @@ public class Flota {
         
         // inicializamos el array
         listaTipoBarco = new int[NUMBARCOS][NCELDAS];
-        listaTipoBarco[1][1]=NCELDAS1;
-        listaTipoBarco[1][2]=NBARCO1;
-        listaTipoBarco[2][1]=NCELDAS2;
-        listaTipoBarco[2][2]=NBARCO2;
-        listaTipoBarco[3][1]=NCELDAS3;
-        listaTipoBarco[3][2]=NBARCO3;
-        listaTipoBarco[4][1]=NCELDAS4;
-        listaTipoBarco[4][2]=NBARCO4;
+        listaTipoBarco[0][0]=NCELDAS1;
+        listaTipoBarco[0][1]=NBARCO1;
+        listaTipoBarco[1][0]=NCELDAS2;
+        listaTipoBarco[1][1]=NBARCO2;
+        listaTipoBarco[2][0]=NCELDAS3;
+        listaTipoBarco[2][1]=NBARCO3;
+        listaTipoBarco[3][0]=NCELDAS4;
+        listaTipoBarco[3][1]=NBARCO4;
 
+        listaBarcos = new ArrayList<>();
         generarFlotaEnemiga();
     }
 
@@ -104,7 +105,7 @@ public class Flota {
                 }
                 miColumna = (int) (Math.random() * numFilas);
                 miFila = (int) (Math.random() * numColumnas);
-                size=listaTipoBarco[i][2];
+                size=listaTipoBarco[i][1];
                 miBarco = new Barco(miDirección,miColumna,miFila,size,posxTablero,posyTablero,lado);
                 comprobar=compruebaNuevoBarco(miBarco);
                 if (comprobar) {
@@ -135,22 +136,39 @@ public class Flota {
 // comprueba si el barco choca con algún barco ya creado en la flota, devuelve true si choca y false si no choca.
     public boolean compruebaBarcos(Barco miBarco){
         boolean resultado=false;
-        int i; //Contador de barcos en la flota
+        int Cbarcos; //Contador de barcos en la flota
+        int Cfilas;
+        int Ccolumnas;
+        int miFila;
+        int miColumna;
          // recorremos los barcos ya almacenados en la flota para compararlos con el barco que nos mandan a comprobar
-        i=0;
-        while (!resultado && i<=listaBarcos.size()) {
-            if (miBarco==listaBarcos.get(i)){
-                resultado=true;
-            }else {
-                resultado=false;
-            };
-            i++;
+       Cbarcos=0;
+        Cfilas=0;
+        Ccolumnas=0;
+        miFila=0;
+        miColumna=0;
+        while (!resultado && Cbarcos<=listaBarcos.size()) {
+            while (Cfilas<=miBarco.getFila()+miBarco.getSize() && !resultado){
+                while (Ccolumnas<=miBarco.getColumna()+miBarco.getSize() && !resultado){
+                    if (listaBarcos.get(Cbarcos).getFila()==miBarco.getFila()+miFila && listaBarcos.get(Cbarcos).getColumna()==miBarco.getColumna()+miColumna){
+                        resultado=true;
+                    }
+                    miColumna++;
+                }
+                miFila++;
+            }
+
+            Cbarcos++;
         }
         return resultado;
     }
 // compueba barco y tablero
     public boolean compruebaNuevoBarco(Barco miBarco){
-        return compruebaTableroExt(miBarco) && compruebaBarcos(miBarco);
+        if (listaBarcos!=null)
+            return compruebaTableroExt(miBarco) && compruebaBarcos(miBarco);
+        else{
+            return compruebaTableroExt(miBarco);
+        }
     }
     // pinta la flota
     public void pintarse(SpriteBatch miSB){
