@@ -78,8 +78,8 @@ public class ControladorJuego {
 
     //Los tableros sera una array list de tableros
 
-    protected ArrayList<Tablero> misTableros;
-
+    protected Tablero tableroJugador;
+    protected Tablero tableroIA;
 
     //Tendremos un SpriteBatch para dibujar en la pantalla
 
@@ -225,7 +225,7 @@ public class ControladorJuego {
 
             if (recienTocado) {//Si ha tocado en la pantalla
 
-                if (!misTableros.get(0).comprobarDisparo(Gdx.input.getX(), Gdx.input.getY())) {
+                if (!tableroJugador.comprobarDisparo(Gdx.input.getX(), Gdx.input.getY())) {
 
                     //pasamos turno
 
@@ -268,7 +268,7 @@ public class ControladorJuego {
         nextY = controladorMaquina.getNextY();
 
 
-        if (misTableros.get(1).comprobarDisparo(nextX,nextY)){ //Hemos acertado
+        if (tableroIA.comprobarDisparo(nextX,nextY)){ //Hemos acertado
 
             controladorMaquina.jugadaResultado(true);
 
@@ -298,12 +298,8 @@ public class ControladorJuego {
 
 
         //Pintar los tableros
-
-        for (Tablero tableros : misTableros) {
-
-            tableros.pintarse(batch);
-
-        }
+        tableroIA.pintarse(batch);
+        tableroJugador.pintarse(batch);
 
     }
 
@@ -332,23 +328,18 @@ public class ControladorJuego {
 
         int altoT = Gdx.graphics.getHeight()/2;
 
-        byte i;
-
-        Tablero tablerito;
 
         //Creamos y añadimos los tableros
 
-        for (i = 0; i < NUMERO_TABLEROS; i++) {
-            tablerito = new Tablero(0, 0, anchoT, altoT);
-            misTableros.add(tablerito);
-        }
+        tableroJugador = new Tablero(0,0,anchoT,altoT);
+        tableroIA = new Tablero(anchoT,altoT,anchoT,altoT);
 
         //Creamos el turno
         turno = TURNO_ALIADO;
 
         //Creamos la maquina de IA
 
-        controladorMaquina = new Pensador(misTableros.get(1));
+        controladorMaquina = new Pensador(tableroIA);
 
     }
 
@@ -369,11 +360,8 @@ public class ControladorJuego {
 
         //Tableros
 
-        for (Tablero tableros : misTableros) {
-
-            tableros.dispose();
-
-        }
+        tableroJugador.dispose();
+        tableroIA.dispose();
 
     }
 }
