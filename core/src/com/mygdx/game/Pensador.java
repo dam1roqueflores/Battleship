@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+
 public class Pensador {
     //ESTADO
     //Le doy un tablero
@@ -22,6 +24,9 @@ public class Pensador {
     static private final int VOY_DIR_CONTRARIA = 3;
     static private final int VOY_PROBAR_OTRA = 4;
     static private final int HE_TERMINADO = 5;
+
+    //LE doy el lado para que haga los calculos una vez acierte
+    private static final int LADO = 10;
     //CONSTRUCTOR
     public Pensador(Tablero miTablero){
 
@@ -57,8 +62,14 @@ public class Pensador {
 
 
     private void piensa_inicial() {
+        //Aquí le digo que me calcule la posX y la posY al azar entre el tablero que le damos
+        nextX = (int)Math.random() * (tableroEnemigo.getPosFinalX() - tableroEnemigo.getPosX())+tableroEnemigo.getPosX();
+        nextY = (int)Math.random() * (tableroEnemigo.getPosFinalY() - tableroEnemigo.getPosY())+tableroEnemigo.getPosY();
+
     }
     private void piensa_acertado() {
+        //Si he acertado tengo que decirle que vaya a izquierda derecha arriba o abajo respecto a la posición
+        //nextX =+ LADO;
     }
     private void piensa_probarOtraDireccion() {
     }
@@ -75,7 +86,10 @@ public class Pensador {
         switch (comoVoy){
             case AL_AZAR:
                 if (resultado){
-                    comoVoy = HE_ACERTADO;
+                    //Aquí voy a poner al comoVoy al azar pero deberia ir HE_ACERTADO
+                    //Lo cambio para que no de error el juego, una vez ya tocado
+                    //habria que cambiarlo
+                    comoVoy = AL_AZAR;
                 }
                 break;
             case HE_ACERTADO:
@@ -94,10 +108,12 @@ public class Pensador {
         }
     }
     public int getNextX() {
+
         return getNextX();
     }
 
     public int getNextY() {
+
         return getNextY();
     }
 }
