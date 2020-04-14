@@ -124,8 +124,10 @@ public class Tablero {
                 miSB.begin();
                 if (mapa[cont1][cont2]=true){
                     miSB.draw(imagen,posX+tam_cel_x*cont1,posY+tam_cel_y*cont2);
+                    miSB.end();
                 } else {
                     miSB.draw(imagenpulsada,posX+tam_cel_x*cont1,posY+tam_cel_y*cont2);
+                    miSB.end();
                 }
             }
         }
