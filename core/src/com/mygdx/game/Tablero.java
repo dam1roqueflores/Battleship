@@ -29,6 +29,8 @@ public class Tablero {
     //protected Celda micelda; //celda con agua
 
     protected boolean[][] mapa;
+    protected Celda[][] celdas;
+    protected Celda[][] celdas_pul;
     //ArrayList<ArrayList<Boolean>> mapa;
 
 
@@ -74,6 +76,8 @@ public class Tablero {
         //}
         //}
         mapa= new  boolean[tamtablero][tamtablero];
+        celdas= new Celda[tamtablero][tamtablero];
+        celdas_pul= new Celda[tamtablero][tamtablero];
 
         //instanciamos la flota
         //miflota= new Flota(tamtablero,tamtablero,posXtablero,posYtablero,tam_cel_x);
@@ -121,13 +125,12 @@ public class Tablero {
     private void pintar_escenario(SpriteBatch miSB){
         for (int cont1=0;cont1<tamtablero;cont1++){
             for (int cont2=0;cont2<tamtablero;cont2++){
-                miSB.begin();
+
                 if (mapa[cont1][cont2]=true){
-                    miSB.draw(imagen,posX+tam_cel_x*cont1,posY+tam_cel_y*cont2);
-                    miSB.end();
+                    celdas[cont1][cont2].pintarse(miSB);
+
                 } else {
-                    miSB.draw(imagenpulsada,posX+tam_cel_x*cont1,posY+tam_cel_y*cont2);
-                    miSB.end();
+                    celdas_pul[cont1][cont2].pintarse(miSB);
                 }
             }
         }
@@ -137,6 +140,8 @@ public class Tablero {
         for (int o=0;o<tamtablero;o++){
             for (int f=0;f<tamtablero;f++){
                 mapa[o][f]= true;
+                celdas[o][f]= new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUA1);
+                celdas_pul[o][f]= new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUAPULSADA1);
             }
         }
         miflota= new Flota(tamtablero,tamtablero,posX,posY,tam_cel_x);

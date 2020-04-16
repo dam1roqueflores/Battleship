@@ -1,10 +1,6 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import org.omg.CORBA.WStringSeqHelper;
-
 import java.util.ArrayList;
 
 public class Barco {
