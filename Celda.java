@@ -1,43 +1,49 @@
-	package com.mygdx.game;
+package com.iespablopicasso.battleship;
 
-	import com.badlogic.gdx.graphics.Texture;
-	import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+public class Celda {
+    /////ESTAD0/////////////////////////////////////////////////////////////////////////
 
-	import java.util.ArrayList;
-
-	public class Celda {
-	    /////ESTAD0/////////////////////////////////////////////////////////////////////////
-
-	    protected int posX;
-	    protected int posY;
-	    protected int lado;
-	    protected Texture miImagen;
-	    protected String nombreesprite;
+    protected int posX;
+    protected int posY;
+    protected int lado;
+    protected Texture miImagen;
+    protected String nombreesprite;
+    protected boolean tocada;
 
 
+    /////CONSTRUCTORES/////////////////////////////////////////////////////////////////
 
-	    /////CONSTRUCTORES/////////////////////////////////////////////////////////////////
+    public Celda(int nposX,int nposY,String minombreesprite){
+        posX=nposX;
+        posY=nposY;
+        nombreesprite = minombreesprite;
 
-	    public Celda(int nposX,int nposY,String minombreesprite){
-	        posX=nposX;
-	        posY=nposY;
-	        nombreesprite = minombreesprite;
-
-	        //una vez que me dan el fichero lo cargo
-	        miImagen = new Texture(nombreesprite);
-	        //Ahora que tengo la imagen
-	        lado = miImagen.getWidth();
+        //una vez que me dan el fichero lo cargo
+        miImagen = new Texture(nombreesprite);
+        //Ahora que tengo la imagen
+        lado = miImagen.getWidth();
 
 
-	    }
-	    public void pintarse(int miposY,int miposX,SpriteBatch miSB){
-	        posX=miposX;
-	        posY=miposY;
-	        
-	    	miSB.begin();
-	        miSB.draw(miImagen,posX,posY);
-	        miSB.end();
-	    }
-	}
+    }
+    public void pintarse(int posY,int posX, SpriteBatch miSB){
+        miSB.begin();
+        miSB.draw(miImagen,posX,posY);
+        miSB.end();
+    }
+
+    /*public void morirse(){
+    if (tocada) {
+    .dispose();
+    }else
+*/
+    }
+
+    public static void dispose() {
+        Celda.dispose();
+    }
 
 }
+
+
+
+
