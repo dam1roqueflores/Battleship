@@ -47,9 +47,6 @@ public class Flota {
     // constructor
     ////////////////////////////////////////////////////////////////////////////////////
     public Flota(int misFilas, int misColumnas, int mixTablero, int miytablero, int milado) {
-
-
-
         numFilas=misFilas;
         numColumnas=misColumnas;
         posxTablero=mixTablero;
@@ -114,6 +111,7 @@ public class Flota {
             }
         }
     }
+
     // comprueba si el barco choca con los límites del tablero
     public boolean compruebaTableroExt(Barco miBarco){
          boolean resultado=true;
@@ -133,6 +131,7 @@ public class Flota {
          }
          return resultado;
     }
+
 // comprueba si el barco choca con algún barco ya creado en la flota, devuelve true si choca y false si no choca.
     public boolean compruebaBarcos(Barco miBarco){
         boolean resultado=true;
@@ -164,6 +163,7 @@ public class Flota {
         }
         return resultado;
     }
+
 // compueba barco y tablero
     public boolean compruebaNuevoBarco(Barco miBarco){
         if (listaBarcos.size()>0)
@@ -172,6 +172,7 @@ public class Flota {
             return compruebaTableroExt(miBarco);
         }
     }
+
     // pinta la flota
     public void pintarse(SpriteBatch miSB){
 
@@ -179,6 +180,7 @@ public class Flota {
             mibarco.pintarse(miSB);
         }
     }
+
     // comprueba que están todos los barcos hundidos devuelve true si quedan barcos por hundir y false si están todos hundidos
     public boolean quedanBarcos(){
         boolean resultado=false;
@@ -194,8 +196,13 @@ public class Flota {
         }
         return resultado;
     }
+
     // liberamos recursos
-    public void dispose(){
-//        this.dispose();
+    public void dispose() {
+        int i=0;
+        // tengo que liberar recursos de los barcos con un bucle
+        for (i = 0; i < listaBarcos.size(); i++)
+            listaBarcos.get(i).dispose();
+        }
     }
 }

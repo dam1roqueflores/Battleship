@@ -313,7 +313,7 @@ public class ControladorJuego {
 
         //MIRAR ALGUNA ORDEN POR SI NO ESTÁ BIEN ESCALADO EL FONDO
 
-        batch.draw(fondoInicio, 0, 0,Gdx.input.getX(),Gdx.input.getY());
+        batch.draw(fondoInicio, 0, 0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 
         batch.end();
 
