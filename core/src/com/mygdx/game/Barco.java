@@ -45,10 +45,12 @@ public class Barco {
         }
     }//Fin de constructor
 
-    public void pintarse(SpriteBatch miSB) {
+    public void pintarse(int posX,int posY,SpriteBatch miSB) {
+        miSB.begin();
         for (Celda miCelda : listaCeldas) {
-            miCelda.pintarse(miSB);
+            miCelda.pintarse(posX,posY,miSB);
         }
+        miSB.end();
     }
 
     public boolean comprobarse() {
@@ -85,4 +87,14 @@ public class Barco {
 
         return EstaHundido;
     }
+
+    public void dispose() {
+
+        int i=0;
+        // tengo que liberar recursos de los barcos con un bucle
+        for (i = 0; i < listaCeldas.size(); i++)
+            listaCeldas.get(i).dispose();
+    }
+
+
 }

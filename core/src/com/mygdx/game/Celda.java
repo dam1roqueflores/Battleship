@@ -12,8 +12,9 @@ public class Celda {
     protected int posY;
     protected int lado;
     protected Texture miImagen;
+    protected String nombreSpriteTocada;
     protected String nombreesprite;
-
+    protected boolean tocada;
 
 
     /////CONSTRUCTORES/////////////////////////////////////////////////////////////////
@@ -27,12 +28,23 @@ public class Celda {
         miImagen = new Texture(nombreesprite);
         //Ahora que tengo la imagen
         lado = miImagen.getWidth();
-
+        tocada=false;
 
     }
-    public void pintarse(SpriteBatch miSB){
+    public void pintarse(int posX,int posY, SpriteBatch miSB){
         miSB.begin();
         miSB.draw(miImagen,posX,posY);
         miSB.end();
     }
+
+    public void morirse() {
+        tocada=true;
+
+    }
+
+
+    public  void dispose() {
+        miImagen.dispose();
+    }
+
 }

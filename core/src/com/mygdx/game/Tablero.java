@@ -29,9 +29,10 @@ public class Tablero {
     //protected Celda micelda; //celda con agua
 
     protected boolean[][] mapa;
-    protected Celda[][] celdas;
-    protected Celda[][] celdas_pul;
-    //ArrayList<ArrayList<Boolean>> mapa;
+    //protected Celda[][] celdas;
+    //protected Celda[][] celdas_pul;
+    ArrayList<ArrayList<Celda>> celdas;
+    ArrayList<ArrayList<Celda>> celdas_pul;
 
 
     //private static final short FILAS=10; //nº de filas
@@ -76,8 +77,11 @@ public class Tablero {
         //}
         //}
         mapa= new  boolean[tamtablero][tamtablero];
-        celdas= new Celda[tamtablero][tamtablero];
-        celdas_pul= new Celda[tamtablero][tamtablero];
+        //celdas= new Celda[tamtablero][tamtablero];
+        //celdas_pul= new Celda[tamtablero][tamtablero];
+
+        celdas= new ArrayList<>();
+        celdas_pul = new ArrayList<>();
 
         //instanciamos la flota
         //miflota= new Flota(tamtablero,tamtablero,posXtablero,posYtablero,tam_cel_x);
@@ -127,25 +131,35 @@ public class Tablero {
             for (int cont2=0;cont2<tamtablero;cont2++){
 
                 if (mapa[cont1][cont2]=true){
-                    celdas[cont1][cont2].pintarse(miSB);
+                    celdas.get(cont1).get(cont2).pintarse(posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,miSB);
 
                 } else {
-                    celdas_pul[cont1][cont2].pintarse(miSB);
+                    celdas_pul.get(cont1).get(cont2).pintarse(posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,miSB);
                 }
             }
         }
     }
 
     public void reset(){
+
+        for (int cont1=0;cont1<tamtablero;cont1++){
+            celdas.add(new ArrayList<Celda>());
+            celdas_pul.add(new ArrayList<Celda>());
+        }
+
+
         for (int o=0;o<tamtablero;o++){
             for (int f=0;f<tamtablero;f++){
                 mapa[o][f]= true;
-                celdas[o][f]= new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUA1);
-                celdas_pul[o][f]= new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUAPULSADA1);
+                celdas.get(o).add(new Celda(posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUA1));
+                celdas_pul.get(o).add(new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUAPULSADA1));
+                //celdas[o][f]= new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUA1);
+                //celdas_pul[o][f]= new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUAPULSADA1);
             }
         }
         miflota= new Flota(tamtablero,tamtablero,posX,posY,tam_cel_x);
     }
+
 
 
 

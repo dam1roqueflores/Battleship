@@ -177,7 +177,7 @@ public class Flota {
     public void pintarse(SpriteBatch miSB){
 
         for (Barco mibarco:listaBarcos) {
-            mibarco.pintarse(miSB);
+            mibarco.pintarse(mibarco.getFila()*lado,mibarco.getColumna()*lado,miSB);
         }
     }
 
@@ -204,5 +204,5 @@ public class Flota {
         for (i = 0; i < listaBarcos.size(); i++)
             listaBarcos.get(i).dispose();
         }
-    }
+
 }
