@@ -139,8 +139,9 @@ public class Tablero {
                     //celdas_pul.get(cont1).get(cont2).pintarse(posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,miSB);
                     miSB.draw(imagenpulsada,posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,tam_cel_x,tam_cel_y);
                 }
+                miSB.end();
             }
-            miSB.end();
+
         }
     }
 
