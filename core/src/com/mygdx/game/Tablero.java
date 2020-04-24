@@ -31,8 +31,8 @@ public class Tablero {
     protected boolean[][] mapa;
     //protected Celda[][] celdas;
     //protected Celda[][] celdas_pul;
-    ArrayList<ArrayList<Celda>> celdas;
-    ArrayList<ArrayList<Celda>> celdas_pul;
+    //ArrayList<ArrayList<Celda>> celdas;
+    //ArrayList<ArrayList<Celda>> celdas_pul;
 
 
     //private static final short FILAS=10; //nº de filas
@@ -80,8 +80,8 @@ public class Tablero {
         //celdas= new Celda[tamtablero][tamtablero];
         //celdas_pul= new Celda[tamtablero][tamtablero];
 
-        celdas= new ArrayList<>();
-        celdas_pul = new ArrayList<>();
+        //celdas= new ArrayList<>();
+        //celdas_pul = new ArrayList<>();
 
         //instanciamos la flota
         //miflota= new Flota(tamtablero,tamtablero,posXtablero,posYtablero,tam_cel_x);
@@ -129,30 +129,34 @@ public class Tablero {
     private void pintar_escenario(SpriteBatch miSB){
         for (int cont1=0;cont1<tamtablero;cont1++){
             for (int cont2=0;cont2<tamtablero;cont2++){
+                miSB.begin();
 
                 if (mapa[cont1][cont2]=true){
-                    celdas.get(cont1).get(cont2).pintarse(posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,miSB);
+                    //celdas.get(cont1).get(cont2).pintarse(posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,miSB);
+                    miSB.draw(imagen,posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,tam_cel_x,tam_cel_y);
 
                 } else {
-                    celdas_pul.get(cont1).get(cont2).pintarse(posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,miSB);
+                    //celdas_pul.get(cont1).get(cont2).pintarse(posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,miSB);
+                    miSB.draw(imagenpulsada,posX+tam_cel_x*cont1,posY+tam_cel_y*cont2,tam_cel_x,tam_cel_y);
                 }
             }
+            miSB.end();
         }
     }
 
     public void reset(){
 
         for (int cont1=0;cont1<tamtablero;cont1++){
-            celdas.add(new ArrayList<Celda>());
-            celdas_pul.add(new ArrayList<Celda>());
+            //celdas.add(new ArrayList<Celda>());
+            //celdas_pul.add(new ArrayList<Celda>());
         }
 
 
         for (int o=0;o<tamtablero;o++){
             for (int f=0;f<tamtablero;f++){
                 mapa[o][f]= true;
-                celdas.get(o).add(new Celda(posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUA1));
-                celdas_pul.get(o).add(new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUAPULSADA1));
+                //celdas.get(o).add(new Celda(posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUA1));
+                //celdas_pul.get(o).add(new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUAPULSADA1));
                 //celdas[o][f]= new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUA1);
                 //celdas_pul[o][f]= new Celda (posX+tam_cel_x*o,posY+tam_cel_y*f,FILEAGUAPULSADA1);
             }
